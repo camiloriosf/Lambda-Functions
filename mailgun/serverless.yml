@@ -56,10 +56,14 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  sendEmail:
-    handler: handler.sendEmail
+  sendContactEmail:
+    handler: handler.sendContactEmail
     events:
-      - http: post handler/sendEmail
+      - http: post handler/sendContactEmail
+  sendQuoteEmail:
+    handler: handler.sendQuoteEmail
+    events:
+      - http: post handler/sendQuoteEmail
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

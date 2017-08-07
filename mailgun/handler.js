@@ -18,7 +18,7 @@ function send(name, email) {
   });
 }
 
-module.exports.sendEmail = (event, context, callback) => {
+module.exports.sendContactEmail = (event, context, callback) => {
   const body = JSON.parse(event.body);
   console.log(body);
   const response = {
@@ -29,6 +29,22 @@ module.exports.sendEmail = (event, context, callback) => {
   };
 
   send(body.payload.changedContact.name, body.payload.changedContact.email);
+
+  callback(null, response);
+};
+
+module.exports.sendQuoteEmail = (event, context, callback) => {
+  const body = JSON.parse(event.body);
+  console.log(body);
+  console.log(body.payload.changedEdge);
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: `Nombre: ${body.payload.changedEdge.node.name}, Correo: ${body.payload.changedEdge.node.email}, Comentarios: ${body.payload.changedEdge.node.comments}`,
+    }),
+  };
+
+  send(body.payload.changedEdge.node.name, body.payload.changedEdge.node.email);
 
   callback(null, response);
 };
