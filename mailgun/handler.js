@@ -35,16 +35,14 @@ module.exports.sendContactEmail = (event, context, callback) => {
 
 module.exports.sendQuoteEmail = (event, context, callback) => {
   const body = JSON.parse(event.body);
-  console.log(body);
-  console.log(body.payload.changedEdge);
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: `Nombre: ${body.payload.changedEdge.node.name}, Correo: ${body.payload.changedEdge.node.email}, Comentarios: ${body.payload.changedEdge.node.comments}`,
+      message: `Nombre: ${body.payload.changedQuote.name}, Correo: ${body.payload.changedQuote.email}, Comentarios: ${body.payload.changedQuote.comments}`,
     }),
   };
 
-  send(body.payload.changedEdge.node.name, body.payload.changedEdge.node.email);
+  send(body.payload.changedQuote.name, body.payload.changedQuote.email);
 
   callback(null, response);
 };
