@@ -3,6 +3,9 @@
 const api_key = 'key-df38066499c441a642a427032910a571';
 const domain = 'api.bittersweet.io';
 const mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain });
+const fs = require('fs');
+var confirmation = fs.readFileSync('./mailgun/templates/confirmation.html', { encoding: 'utf-8' });
+confirmation = confirmation.toString();
 
 function send(name, email) {
   const data = {
@@ -10,7 +13,8 @@ function send(name, email) {
     to: email,
     bcc: 'camilo.rios@bittersweet.io',
     subject: 'Email Received',
-    text: `Hi ${name},\n\nWe have received your email, we will get in touch shortly`
+    text: `Hi ${name},\n\nWe have received your email, we will get in touch shortly`,
+    html: confirmation
   };
 
   mailgun.messages().send(data, function (error, body) {
