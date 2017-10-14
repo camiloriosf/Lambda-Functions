@@ -1,7 +1,7 @@
 'use strict';
 
-const api_key = 'key-df38066499c441a642a427032910a571';
-const domain = 'api.bittersweet.io';
+const api_key = '';
+const domain = '';
 const mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain });
 const fs = require('fs');
 var confirmation = fs.readFileSync('./mailgun/templates/confirmation.html', { encoding: 'utf-8' });
