@@ -60,6 +60,10 @@ functions:
     handler: handler.sendConfirmationEmail
     events:
       - http: post handler/sendConfirmationEmail
+  sendContactConfirmationEmail:
+    handler: handler.sendContactConfirmationEmail
+    events:
+      - http: post handler/sendContactConfirmationEmail
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
